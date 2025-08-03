@@ -1,3 +1,4 @@
+import { Box, Heading, Text, VStack, HStack, Button, useBreakpointValue, chakra } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import {
   FaHardHat,
@@ -9,6 +10,7 @@ import {
 import logo from "./assets/logo.jpg";
 
 // Animation config
+const MotionBox = motion(chakra.div);
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i = 1) => ({
@@ -62,167 +64,212 @@ const testimonials = [
 
 // Reusable Section Container
 const Section = ({ title, icon, children }) => (
-  <section className="space-y-6">
-    <h2 className="text-3xl font-bold flex items-center gap-3">
-      {icon && <span className="text-blue-400">{icon}</span>}
-      {title}
-    </h2>
+  <VStack align="start" spacing={6} as="section">
+    <HStack spacing={3}>
+      {icon && <Box className="text-accent">{icon}</Box>}
+      <Heading
+        as="h2"
+        size="lg"
+        className="text-primary font-montserrat drop-shadow"
+        fontWeight="bold"
+      >
+        {title}
+      </Heading>
+    </HStack>
     {children}
-  </section>
+  </VStack>
 );
 
-// App Component
 export default function App() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-800 to-black text-white px-4 py-12 font-sans flex flex-col justify-center items-center text-center">
-      <div className="max-w-6xl w-full space-y-24">
+  const heroFontSize = useBreakpointValue({ base: "3xl", md: "5xl", lg: "6xl" });
 
+  return (
+    <Box
+      minH="100vh"
+      px={4}
+      py={12}
+      className="bg-gradient-to-br from-background via-black to-gray-950 text-text font-montserrat flex flex-col justify-center items-center text-center"
+    >
+      <VStack spacing={24} maxW="6xl" w="full" align="center">
         {/* Hero */}
-        <motion.header
+        <MotionBox
           initial="hidden"
           animate="visible"
           custom={1}
           variants={fadeInUp}
-          className="text-center space-y-4"
+          as="header"
+          w="full"
+          textAlign="center"
+          spacing={4}
         >
-          <div className="flex justify-center items-center gap-4">
-            <img
+          <HStack justify="center" spacing={4}>
+            <Box
+              as="img"
               src={logo}
               alt="RIEC Logo"
-              width={150}
-              height={150}
-              className="rounded-full shadow-md ring-2 ring-blue-400"
+              boxSize="150px"
+              className="rounded-full shadow-lg ring-4 ring-primary bg-white/10"
             />
-          </div>
-          <h1
-            style={{ 
-              fontFamily: "Montserrat, sans-serif",
-              // fontWeight: "bold",
-              fontSize: "1.5rem",
-            }}
-            className="text-5xl font-bold text-blue-400 font-montserrat"
+          </HStack>
+          <Heading
+            as="h1"
+            fontSize={heroFontSize}
+            fontWeight="extrabold"
+            className="text-primary font-montserrat drop-shadow-xl"
+            mt={4}
           >
             Room of Innovative and of Engineering Construction (RIEC)
-          </h1>
-          <p className="text-gray-300 text-xl max-w-xl mx-auto">
+          </Heading>
+          <Text
+            fontSize="xl"
+            mt={2}
+            className="text-text/80 max-w-xl mx-auto font-roboto"
+          >
             Innovative Civil Engineering Solutions for a Sustainable Future
-          </p>
-        </motion.header>
+          </Text>
+        </MotionBox>
 
         {/* Services */}
-        <motion.div
+        <MotionBox
           initial="hidden"
           animate="visible"
           custom={2}
           variants={fadeInUp}
-          className="bg-gray-800 p-8 rounded-2xl shadow-lg"
+          className="bg-black/60 p-8 rounded-2xl shadow-xl border border-border backdrop-blur-md w-full"
         >
           <Section title="Our Services" icon={<FaBuilding />}>
-            <ul className="list-disc pl-6 text-gray-300 space-y-2">
+            <Box as="ul" className="list-disc pl-6 text-text/90 space-y-2 font-roboto">
               {services.map((service, i) => (
-                <li key={i}>{service}</li>
+                <Box as="li" key={i} className="transition-colors hover:text-accent">
+                  {service}
+                </Box>
               ))}
-            </ul>
+            </Box>
           </Section>
-        </motion.div>
+        </MotionBox>
 
         {/* Projects */}
-        <motion.div
+        <MotionBox
           initial="hidden"
           animate="visible"
           custom={3}
           variants={fadeInUp}
+          w="full"
         >
           <Section title="Highlighted Projects">
-            <div className="grid md:grid-cols-3 gap-6">
+            <Box className="grid md:grid-cols-3 gap-6">
               {projects.map((p, i) => (
-                <div
+                <Box
                   key={i}
-                  className="bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-xl transition"
+                  className="bg-black/60 p-6 rounded-xl shadow-lg border border-border hover:shadow-2xl transition-all duration-300"
                 >
-                  <h3 className="text-xl font-semibold text-blue-400">
+                  <Heading
+                    as="h3"
+                    fontSize="xl"
+                    className="text-primary font-montserrat font-semibold"
+                  >
                     {p.title}
-                  </h3>
-                  <p className="text-gray-300 mt-2">{p.description}</p>
-                </div>
+                  </Heading>
+                  <Text className="text-text/80 mt-2 font-roboto">{p.description}</Text>
+                </Box>
               ))}
-            </div>
+            </Box>
           </Section>
-        </motion.div>
+        </MotionBox>
 
         {/* Team */}
-        <motion.div
+        <MotionBox
           initial="hidden"
           animate="visible"
           custom={4}
           variants={fadeInUp}
+          w="full"
         >
           <Section title="Meet the Team" icon={<FaUsers />}>
-            <div className="grid md:grid-cols-3 gap-6">
+            <Box className="grid md:grid-cols-3 gap-6">
               {team.map((member, i) => (
-                <div
+                <Box
                   key={i}
-                  className="bg-gray-800 p-6 rounded-xl text-center shadow-md"
+                  className="bg-black/60 p-6 rounded-xl text-center shadow-lg border border-border"
                 >
-                  <h3 className="text-xl font-bold text-blue-400">
+                  <Heading
+                    as="h3"
+                    fontSize="xl"
+                    className="text-primary font-montserrat font-bold"
+                  >
                     {member.name}
-                  </h3>
-                  <p className="text-gray-400">{member.role}</p>
-                </div>
+                  </Heading>
+                  <Text className="text-text/70 font-roboto">{member.role}</Text>
+                </Box>
               ))}
-            </div>
+            </Box>
           </Section>
-        </motion.div>
+        </MotionBox>
 
         {/* Testimonials */}
-        <motion.div
+        <MotionBox
           initial="hidden"
           animate="visible"
           custom={5}
           variants={fadeInUp}
+          w="full"
         >
           <Section
             title="What Our Clients Say"
             icon={<FaQuoteLeft className="inline-block" />}
           >
-            <div className="grid md:grid-cols-2 gap-6">
+            <Box className="grid md:grid-cols-2 gap-6">
               {testimonials.map((t, i) => (
-                <div
+                <Box
                   key={i}
-                  className="bg-gray-800 p-6 rounded-xl shadow border-l-4 border-blue-400"
+                  className="bg-black/60 p-6 rounded-xl shadow-lg border-l-4 border-accent border border-border"
                 >
-                  <p className="italic text-gray-300 mb-4">"{t.quote}"</p>
-                  <p className="text-blue-300 font-semibold">— {t.name}</p>
-                </div>
+                  <Text className="italic text-text/90 mb-4 font-roboto">
+                    "{t.quote}"
+                  </Text>
+                  <Text className="text-accent font-semibold font-montserrat">
+                    — {t.name}
+                  </Text>
+                </Box>
               ))}
-            </div>
+            </Box>
           </Section>
-        </motion.div>
+        </MotionBox>
 
         {/* CTA */}
-        <motion.section
+        <MotionBox
           initial="hidden"
           animate="visible"
           custom={6}
           variants={fadeInUp}
-          className="text-center space-y-4"
+          as="section"
+          w="full"
+          textAlign="center"
+          spacing={4}
         >
-          <h2 className="text-3xl font-bold">
-            Let's Build the Future Together
-          </h2>
-          <a
-            href="mailto:info@riec.com"
-            className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-md hover:bg-blue-700 transition"
+          <Heading
+            as="h2"
+            fontSize={{ base: "2xl", md: "4xl" }}
+            fontWeight="extrabold"
+            className="text-primary font-montserrat drop-shadow"
           >
-            <FaEnvelope />
+            Let's Build the Future Together
+          </Heading>
+          <Button
+            as="a"
+            href="mailto:info@riec.com"
+            leftIcon={<FaEnvelope />}
+            size="lg"
+            className="bg-accent text-black rounded-xl text-lg font-semibold shadow-lg hover:bg-primary hover:text-white transition-all duration-300"
+            _hover={{ bg: "var(--color-primary)", color: "white" }}
+          >
             Contact Us
-          </a>
-          <p className="text-sm text-gray-500 mt-4">
-            &copy; {new Date().getFullYear()} RIEC Civil Engineering. All rights
-            reserved.
-          </p>
-        </motion.section>
-      </div>
-    </div>
+          </Button>
+          <Text className="text-sm text-text/60 mt-4 font-roboto">
+            &copy; {new Date().getFullYear()} RIEC Civil Engineering. All rights reserved.
+          </Text>
+        </MotionBox>
+      </VStack>
+    </Box>
   );
 }

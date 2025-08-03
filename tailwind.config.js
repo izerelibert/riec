@@ -1,23 +1,66 @@
 module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx,css}",
+  ],
   theme: {
     extend: {
       colors: {
-        primary: '#2563eb',
-        secondary: '#4f46e5',
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        accent: 'var(--color-accent)',
+        background: 'var(--color-background)',
+        text: 'var(--color-text)',
+        border: 'var(--color-border)',
+        hover: 'var(--color-hover)',
+        active: 'var(--color-active)',
+        error: 'var(--color-error)',
+        success: 'var(--color-success)',
+        warning: 'var(--color-warning)',
+        info: 'var(--color-info)',
       },
       fontFamily: {
-        montserrat: ['Montserrat', 'sans-serif'],
+        montserrat: ['var(--font-montserrat)'],
+        roboto: ['var(--font-roboto)'],
       },
       fontSize: {
-        '2xl': ['1.5rem', { lineHeight: '2rem' }],
-        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+        '6xl': 'var(--text-6xl)',
+        '5xl': 'var(--text-5xl)',
+        '4xl': 'var(--text-4xl)',
+        '3xl': 'var(--text-3xl)',
+        '2xl': 'var(--text-2xl)',
+        'xl': 'var(--text-xl)',
+        'lg': 'var(--text-lg)',
+        'base': 'var(--text-base)',
+        'sm': 'var(--text-sm)',
+        'xs': 'var(--text-xs)',
       },
-      spacing: {
-        '18': '4.5rem',
-        '36': '9rem',
+      borderRadius: {
+        DEFAULT: 'var(--border-radius)',
       },
       boxShadow: {
-        'custom': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        base: 'var(--shadow-base)',
+        lg: 'var(--shadow-lg)',
+        xl: 'var(--shadow-xl)',
+        inner: 'var(--shadow-inner)',
+        outline: 'var(--shadow-outline)',
+        none: 'var(--shadow-none)',
+      },
+      transitionDuration: {
+        DEFAULT: 'var(--transition-duration)',
+      },
+      transitionTimingFunction: {
+        DEFAULT: 'var(--transition-timing)',
+      },
+      lineHeight: {
+        base: 'var(--line-height-base)',
+      },
+      fontWeight: {
+        normal: 'var(--font-weight-normal)',
+        medium: 'var(--font-weight-medium)',
+        semibold: 'var(--font-weight-semibold)',
+        bold: 'var(--font-weight-bold)',
+        extrabold: 'var(--font-weight-extrabold)',
+        black: 'var(--font-weight-black)',
       },
     },
   },
