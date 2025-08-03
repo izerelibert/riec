@@ -44,19 +44,21 @@ const projects = [
 ];
 
 const team = [
-  { name: "Ing. Jean Bosco", role: "Structural Engineer" },
-  { name: "Ing. Alice Niyonsaba", role: "Project Manager" },
-  { name: "Eng. David Mugisha", role: "Sustainability Lead" },
+  { name: "Eng. Barnabe RWAKAZINA", role: "Civil & Structural Engineer" },
+  { name: "Eng. Libert IZERE", role: "Project Engineer" },
+  { name: "Eng. Fabrice IRAGENA", role: "Geotechnical Engineer" },
+  { name: "Arch. Philbert N.", role: "Architectural Designer" },
+  { name: "Eng. Stella Ildie TONZI", role: "Financial Analyst" },
 ];
 
 const testimonials = [
   {
-    name: "Paul M.",
+    name: "Raul H.",
     quote:
       "RIEC delivered exceptional quality and project management. Truly reliable.",
   },
   {
-    name: "Sarah K.",
+    name: "Claudette K.",
     quote:
       "Professional team, eco-conscious designs, and impressive timelines!",
   },
